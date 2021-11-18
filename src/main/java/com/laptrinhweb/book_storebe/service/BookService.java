@@ -1,4 +1,4 @@
-package com.laptrinhweb.book_storebe.book.service;
+package com.laptrinhweb.book_storebe.service;
 
 import org.springframework.stereotype.Service;
 

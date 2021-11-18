@@ -1,6 +1,6 @@
-package com.laptrinhweb.book_storebe.book.repository;
+package com.laptrinhweb.book_storebe.repository;
 
-import com.laptrinhweb.book_storebe.book.entity.Book;
+import com.laptrinhweb.book_storebe.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

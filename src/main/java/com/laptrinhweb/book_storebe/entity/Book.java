@@ -1,4 +1,4 @@
-package com.laptrinhweb.book_storebe.book.entity;
+package com.laptrinhweb.book_storebe.entity;
 
 import javax.persistence.*;
 
