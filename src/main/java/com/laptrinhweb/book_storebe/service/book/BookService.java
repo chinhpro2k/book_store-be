@@ -1,13 +1,10 @@
 package com.laptrinhweb.book_storebe.service.book;
 
-import antlr.StringUtils;
 import com.laptrinhweb.book_storebe.entity.book.Book;
 import com.laptrinhweb.book_storebe.entity.book.BookItem;
 import com.laptrinhweb.book_storebe.repository.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +35,20 @@ public class BookService {
         return bookRepository.findAllByAuthor_Id(id);
     }
 
-    public List<BookItem> getFindByName (@PathVariable("title") String title){
+//    public List<Book> getFindByName (String name){
+//        List<BookItem> bookItems = new ArrayList<>();
+//        List<Book> list = new ArrayList<>();
+//        if(name.isEmpty()){
+//            //
+//        }else{
+//            list = bookRepository.findByName(name);
+//        }
+//        return list;
+//    }
+
+    public List<BookItem> getAll(){
         List<BookItem> list = new ArrayList<>();
-        list = bookRepository.findByName(title);
+        list = bookRepository.getAll();
         return list;
     }
 
