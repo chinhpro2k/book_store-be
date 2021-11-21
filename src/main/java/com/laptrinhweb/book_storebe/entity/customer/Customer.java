@@ -2,23 +2,15 @@ package com.laptrinhweb.book_storebe.entity.customer;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "customer")
+
+@MappedSuperclass
 public class Customer {
-    public Customer() {
-    }
 
-    public Customer(Long id, String sex, String date_of_birth) {
-        this.id = id;
-        this.sex = sex;
-        this.date_of_birth = date_of_birth;
-    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Long id;
-    private String sex;
-
+   public String sex;
+   public String username;
+   public String password;
+   public String name;
+   public String date_of_birth;
 
     public String getName() {
         return name;
@@ -28,15 +20,6 @@ public class Customer {
         this.name = name;
     }
 
-    private String name;
-    private String date_of_birth;
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getSex() {
         return sex;
@@ -54,5 +37,19 @@ public class Customer {
         this.date_of_birth = date_of_birth;
     }
 
+    public String getUserName() {
+        return username;
+    }
 
+    public void setUserName(String Username) {
+        this.username = Username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
