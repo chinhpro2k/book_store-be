@@ -87,6 +87,7 @@ public class CustomerService {
         List<AddressDTO> addressDTOS=new ArrayList<>();
         for (Address address:addresses){
             AddressDTO addressDTO=new AddressDTO();
+            addressDTO.setId(address.getId());
             addressDTO.setNumber(address.getNumber());
             addressDTO.setStreet(address.getStreet());
             addressDTO.setDistrict(address.getDistrict());
