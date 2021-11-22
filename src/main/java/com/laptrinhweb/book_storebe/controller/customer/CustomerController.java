@@ -17,7 +17,7 @@ public class CustomerController {
         return customerService.create(customerDto);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public CustomerResponse login(@RequestBody CustomerDto customerDto){
         return customerService.login(customerDto);
     }

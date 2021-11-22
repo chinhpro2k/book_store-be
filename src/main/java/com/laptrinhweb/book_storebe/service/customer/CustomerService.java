@@ -31,31 +31,31 @@ public class CustomerService {
     }
 
     public CustomerResponse login(CustomerDto customerDto) {
-        System.out.println(customerDto.getUserName());
-        System.out.println(customerDto.getPassword());
         CustomerNew customerNew = customerNewRepository.getByUserName(customerDto.getUserName());
         CustomerMember customerMember = customerMemberRepository.getByUserName(customerDto.getUserName());
-        System.out.println(customerNew.getPassword());
-        CustomerDto customerDto1 =new CustomerDto();
+        CustomerDto customerDto1 =null;
         if (customerNew != null) {
             if (customerDto.getPassword().equals(customerNew.getPassword()) ) {
+                customerDto1=new CustomerDto();
                 customerDto1.setName(customerNew.getName());
                 customerDto1.setSex(customerNew.getSex());
                 customerDto1.setDate_of_birth(customerNew.getDate_of_birth());
+                return new CustomerResponse(customerDto1,200);
             }else {
 
             }
         } else {
             if (customerMember != null) {
                 if (customerDto.getPassword().equals(customerMember.getPassword()) ) {
+                    customerDto1=new CustomerDto();
                     customerDto1.setName(customerMember.getName());
                     customerDto1.setSex(customerMember.getSex());
                     customerDto1.setDate_of_birth(customerMember.getDate_of_birth());
-
+                    return new CustomerResponse(customerDto1,200);
                 }
             }
         }
-        return new CustomerResponse(customerDto1);
+        return new CustomerResponse(customerDto1,400);
     }
 
 
