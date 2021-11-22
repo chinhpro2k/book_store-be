@@ -1,7 +1,9 @@
 package com.laptrinhweb.book_storebe.controller.customer;
 
+import com.laptrinhweb.book_storebe.dtos.AddressDTO;
 import com.laptrinhweb.book_storebe.dtos.CustomerDto;
 import com.laptrinhweb.book_storebe.payload.ApiResponse;
+import com.laptrinhweb.book_storebe.response.AddressResponse;
 import com.laptrinhweb.book_storebe.response.CustomerResponse;
 import com.laptrinhweb.book_storebe.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,18 @@ public class CustomerController {
         return customerService.create(customerDto);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public CustomerResponse login(@RequestBody CustomerDto customerDto){
         return customerService.login(customerDto);
+    }
+
+    @PostMapping("/change/address")
+    public ApiResponse login(@RequestBody AddressDTO addressDTO){
+        return customerService.updateAdd(addressDTO);
+    }
+
+    @GetMapping("/address")
+    public AddressResponse getListAddress(@RequestParam String id){
+        return customerService.getListAddress(id);
     }
 }

@@ -13,7 +13,7 @@ public class Address {
     private String city;
     private String district;
     private String street;
-
+    private String numberphone;
 
     @ManyToOne
     @JoinColumn(name = "customer_member_id")
@@ -77,5 +77,13 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getNumberphone() {
+        return numberphone;
+    }
+
+    public void setNumberphone(String numberphone) {
+        this.numberphone = numberphone;
     }
 }
