@@ -26,11 +26,4 @@ private int status;
         this.customer = customer;
     }
 
-
-
-    
-
-
-
-
 }

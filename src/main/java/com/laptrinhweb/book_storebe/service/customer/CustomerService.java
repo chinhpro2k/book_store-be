@@ -6,11 +6,16 @@ import com.laptrinhweb.book_storebe.entity.customer.Address;
 import com.laptrinhweb.book_storebe.entity.customer.CustomerMember;
 import com.laptrinhweb.book_storebe.entity.customer.CustomerNew;
 import com.laptrinhweb.book_storebe.payload.ApiResponse;
+import com.laptrinhweb.book_storebe.repository.customer.AddressRepository;
 import com.laptrinhweb.book_storebe.repository.customer.CustomerMemberRepository;
 import com.laptrinhweb.book_storebe.repository.customer.CustomerNewRepository;
+import com.laptrinhweb.book_storebe.response.AddressResponse;
 import com.laptrinhweb.book_storebe.response.CustomerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CustomerService {
@@ -18,6 +23,8 @@ public class CustomerService {
     private CustomerNewRepository customerNewRepository;
     @Autowired
     private CustomerMemberRepository customerMemberRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
 
     public ApiResponse create(CustomerDto customerDto) {
@@ -59,14 +66,35 @@ public class CustomerService {
     }
 
 
-    public void updateAdd(AddressDTO dto) {
-        CustomerNew customerNew = customerNewRepository.findById(dto.getuId()).orElse(null);
+    public ApiResponse updateAdd(AddressDTO addressDTO) {
+        CustomerNew customerNew = customerNewRepository.findById(addressDTO.getuId()).orElse(null);
         if (customerNew != null) {
             Address address = new Address();
-            //set gia tri
+            address.setCity(addressDTO.getCity());
+            address.setDistrict(addressDTO.getDistrict());
+            address.setNumber(addressDTO.getNumber());
+            address.setStreet(addressDTO.getStreet());
+            address.setNumberphone(addressDTO.getNumberphone());
             address.setCustomerNew(customerNew);
-            //addrepo.save
+            addressRepository.save(address);
+            return new ApiResponse(0);
         }
+        return new ApiResponse(1);
+    }
+
+    public AddressResponse getListAddress(String uId){
+        List<Address> addresses=addressRepository.getListAddress(Long.parseLong(uId));
+        List<AddressDTO> addressDTOS=new ArrayList<>();
+        for (Address address:addresses){
+            AddressDTO addressDTO=new AddressDTO();
+            addressDTO.setNumber(address.getNumber());
+            addressDTO.setStreet(address.getStreet());
+            addressDTO.setDistrict(address.getDistrict());
+            addressDTO.setCity(address.getCity());
+            addressDTO.setNumberphone(address.getNumberphone());
+            addressDTOS.add(addressDTO);
+        }
+        return new AddressResponse(addressDTOS);
     }
 
 
