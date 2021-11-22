@@ -1,22 +1,15 @@
 package com.laptrinhweb.book_storebe.controller.book;
 
+import com.laptrinhweb.book_storebe.dtos.BookDTO;
 import com.laptrinhweb.book_storebe.entity.book.Author;
-import com.laptrinhweb.book_storebe.entity.book.Book;
-import com.laptrinhweb.book_storebe.entity.book.BookItem;
-import com.laptrinhweb.book_storebe.payload.ApiResponse;
 import com.laptrinhweb.book_storebe.service.book.AuthorService;
 import com.laptrinhweb.book_storebe.service.book.BookItemService;
 import com.laptrinhweb.book_storebe.service.book.BookService;
-import org.apache.el.stream.Optional;
+import com.laptrinhweb.book_storebe.service.book.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/book")
@@ -30,6 +23,8 @@ public class BookController {
 
     @Autowired
     BookService bookService;
+    @Autowired
+    private UtilsService utilsService;
 
     //author
     //hien thi author
@@ -59,10 +54,9 @@ public class BookController {
         return authorService.updateAuthorById(id, author);
     }
 
-    @GetMapping("/search/{title}")
-    public List<BookItem> getBookByName (@PathVariable("title") String title){
-        return bookService.getFindByName(title);
+    @GetMapping("/all")
+    public List<BookDTO> getAllBookItems(){
+        return utilsService.getDataBook();
     }
-
 
 }

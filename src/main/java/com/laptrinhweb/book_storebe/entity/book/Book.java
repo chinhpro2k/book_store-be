@@ -3,6 +3,7 @@ package com.laptrinhweb.book_storebe.entity.book;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +19,9 @@ public class Book {
     private String summary;
     private String numberOfPage;
     private String language;
+
+    @OneToMany(mappedBy = "book")
+    List<BookItem> bookItems;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", referencedColumnName = "author_id")

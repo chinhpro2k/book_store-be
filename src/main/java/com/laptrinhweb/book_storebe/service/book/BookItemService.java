@@ -29,7 +29,5 @@ public class BookItemService {
         return bookItemRepository.findById(id);
     }
 
-    public List<BookItem> getAllBookItemByBookId(long id){
-        return bookItemRepository.findAllByBook_Id(id);
-    }
+
 }
