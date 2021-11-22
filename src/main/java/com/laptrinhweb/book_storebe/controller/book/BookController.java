@@ -1,11 +1,11 @@
 package com.laptrinhweb.book_storebe.controller.book;
 
+import com.laptrinhweb.book_storebe.dtos.BookDTO;
 import com.laptrinhweb.book_storebe.entity.book.Author;
-import com.laptrinhweb.book_storebe.entity.book.Book;
-import com.laptrinhweb.book_storebe.entity.book.BookItem;
 import com.laptrinhweb.book_storebe.service.book.AuthorService;
 import com.laptrinhweb.book_storebe.service.book.BookItemService;
 import com.laptrinhweb.book_storebe.service.book.BookService;
+import com.laptrinhweb.book_storebe.service.book.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +23,8 @@ public class BookController {
 
     @Autowired
     BookService bookService;
+    @Autowired
+    private UtilsService utilsService;
 
     //author
     //hien thi author
@@ -52,15 +54,9 @@ public class BookController {
         return authorService.updateAuthorById(id, author);
     }
 
-//    @GetMapping("/search/{title}")
-//    public List<Book> getBookByName (@PathVariable("name") String name){
-//        return bookService.getFindByName(name);
-//    }
-
     @GetMapping("/all")
-    public List<BookItem> getAllBook(){
-        return bookService.getAll();
+    public List<BookDTO> getAllBookItems(){
+        return utilsService.getDataBook();
     }
-
 
 }

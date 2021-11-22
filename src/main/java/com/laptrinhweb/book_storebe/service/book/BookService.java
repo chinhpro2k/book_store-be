@@ -1,5 +1,6 @@
 package com.laptrinhweb.book_storebe.service.book;
 
+import com.laptrinhweb.book_storebe.dtos.BookDTO;
 import com.laptrinhweb.book_storebe.entity.book.Book;
 import com.laptrinhweb.book_storebe.entity.book.BookItem;
 import com.laptrinhweb.book_storebe.repository.book.BookRepository;
@@ -31,25 +32,7 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
-    public List<Book> getAllBooksByAuthorId(long id){
-        return bookRepository.findAllByAuthor_Id(id);
-    }
 
-//    public List<Book> getFindByName (String name){
-//        List<BookItem> bookItems = new ArrayList<>();
-//        List<Book> list = new ArrayList<>();
-//        if(name.isEmpty()){
-//            //
-//        }else{
-//            list = bookRepository.findByName(name);
-//        }
-//        return list;
-//    }
 
-    public List<BookItem> getAll(){
-        List<BookItem> list = new ArrayList<>();
-        list = bookRepository.getAll();
-        return list;
-    }
 
 }
