@@ -38,4 +38,9 @@ public class CustomerController {
     public CustomerResponse getById(@RequestBody CustomerDto customerDto){
     return customerService.getCustomer(customerDto);
     }
+
+    @PostMapping("/update")
+    public ApiResponse updateCustomer(@RequestBody CustomerDto customerDto){
+        return customerService.updateCustomer(customerDto);
+    }
 }

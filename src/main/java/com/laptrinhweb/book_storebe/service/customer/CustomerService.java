@@ -107,8 +107,19 @@ public class CustomerService {
             customerDto1.setName(customerNew.getName());
             customerDto1.setDate_of_birth(customerNew.getDate_of_birth());
             customerDto1.setSex(customerNew.getSex());
+            customerDto1.setEmail(customerNew.getEmail());
+            customerDto1.setNumberphone(customerNew.getNumberphone());
             return new CustomerResponse(customerDto1,200);
         }
        return new CustomerResponse(null,400);
+    }
+    public ApiResponse updateCustomer(CustomerDto customerDto){
+        CustomerNew customerNew =customerNewRepository.findByUserId(customerDto.getCustomerId());
+        customerNew.setEmail(customerDto.getEmail());
+        customerNew.setNumberphone(customerDto.getNumberphone());
+        customerNew.setSex(customerDto.getSex());
+        customerNew.setDate_of_birth(customerDto.getDate_of_birth());
+        customerNewRepository.save(customerNew);
+        return new ApiResponse(0);
     }
 }
