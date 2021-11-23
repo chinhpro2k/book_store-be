@@ -104,6 +104,7 @@ public class CustomerService {
         CustomerNew customerNew=customerNewRepository.findByUserId(customerDto.getCustomerId());
         if (customerNew!=null){
             CustomerDto customerDto1=new CustomerDto();
+            customerDto1.setUserName(customerNew.getUserName());
             customerDto1.setName(customerNew.getName());
             customerDto1.setDate_of_birth(customerNew.getDate_of_birth());
             customerDto1.setSex(customerNew.getSex());
@@ -116,6 +117,7 @@ public class CustomerService {
     }
     public ApiResponse updateCustomer(CustomerDto customerDto){
         CustomerNew customerNew =customerNewRepository.findByUserId(customerDto.getCustomerId());
+        customerNew.setName(customerDto.getName());
         customerNew.setEmail(customerDto.getEmail());
         customerNew.setNumberphone(customerDto.getNumberphone());
         customerNew.setSex(customerDto.getSex());
