@@ -1,14 +1,14 @@
 package com.laptrinhweb.book_storebe.dtos;
 
 public class CustomerDto {
-    private String userName;
+    private String username;
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String Username) {
+        this.username = Username;
     }
 
     public String getPassword() {
