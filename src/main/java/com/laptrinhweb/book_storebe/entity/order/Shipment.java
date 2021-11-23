@@ -13,21 +13,21 @@ public class Shipment {
     private String address;
     private String shipment ;
     private Long price ;
-    private  Long order_id ;
 
-    public Shipment(Long id, String address, String shipment, Long price,Long order_id) {
+
+    public Shipment(Long id, String address, String shipment, Long price) {
         this.id = id;
         this.address = address;
         this.shipment = shipment;
         this.price = price;
-        this.order_id = order_id;
+
     }
 
-    public Shipment(String address, String shipment, Long price,Long order_id) {
+    public Shipment(String address, String shipment, Long price) {
         this.address = address;
         this.shipment = shipment;
         this.price = price;
-        this.order_id = order_id;
+
     }
 
     public Shipment() {
@@ -66,11 +66,5 @@ public class Shipment {
         this.price = price;
     }
 
-    public Long getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(Long order_id) {
-        this.order_id = order_id;
-    }
+   
 }

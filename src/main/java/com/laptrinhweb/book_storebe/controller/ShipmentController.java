@@ -22,7 +22,7 @@ public class ShipmentController {
     @PostMapping("/create")
     public ApiResponse createShipment(@RequestBody Shipment sReq) {
         System.out.println(sReq);
-        Shipment s = new Shipment(sReq.getShipment(),sReq.getAddress(), sReq.getPrice(), sReq.getOrder_id());
+        Shipment s = new Shipment(sReq.getShipment(),sReq.getAddress(), sReq.getPrice());
         shipmentRepository.save(s);
         return new ApiResponse(0);
     }
