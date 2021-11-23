@@ -21,6 +21,7 @@ public class UtilsService {
 
     public List<BookDTO> getDataBook(){
         StringBuilder strQuery = new StringBuilder(" Select ");
+        strQuery.append("   bi.id as id, ");
         strQuery.append("   b.img as img, ");
         strQuery.append("   b.title as title, ");
         strQuery.append("   bi.amount as amount, ");
