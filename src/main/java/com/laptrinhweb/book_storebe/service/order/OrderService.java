@@ -7,6 +7,7 @@ import com.laptrinhweb.book_storebe.entity.order.Order;
 import com.laptrinhweb.book_storebe.entity.order.OrderLine;
 import com.laptrinhweb.book_storebe.payload.ApiResponse;
 import com.laptrinhweb.book_storebe.repository.customer.CustomerNewRepository;
+import com.laptrinhweb.book_storebe.repository.ShipmentRepository;
 import com.laptrinhweb.book_storebe.repository.order.CartRepository;
 import com.laptrinhweb.book_storebe.repository.order.OrderLineRepository;
 import com.laptrinhweb.book_storebe.repository.order.OrderRepository;
@@ -27,6 +28,8 @@ public class OrderService {
     private OrderRepository orderRepository;
     @Autowired
     private OrderLineRepository orderLineRepository;
+    @Autowired
+    private ShipmentRepository shipmentRepository;
 
     public ApiResponse createOrder(OrderDto orderDto) {
         List<Cart> cartList = cartRepository.findByUserId(orderDto.getCustomerId());
@@ -36,6 +39,7 @@ public class OrderService {
         orderNew.setStatus("new");
         orderNew.setCustomer(customer);
         orderNew.setDate(new Date());
+        orderNew.setShipment(shipmentRepository.getShopId(orderDto.getShipmentId()).get(0));
 
         orderRepository.save(orderNew);
 
@@ -48,6 +52,10 @@ public class OrderService {
             orderLines.add(orderLineNew);
         });
         orderLineRepository.saveAll(orderLines);
+
+        cartList.forEach(s-> {
+            cartRepository.deleteById(s.getId());
+        });
 
         return new ApiResponse(0);
     }

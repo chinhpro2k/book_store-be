@@ -21,4 +21,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_new_id", referencedColumnName = "id")
     private CustomerNew customer;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "shipment_id", referencedColumnName = "id")
+    private Shipment shipment;
+
 }
