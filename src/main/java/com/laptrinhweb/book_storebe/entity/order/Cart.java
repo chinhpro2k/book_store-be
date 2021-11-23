@@ -15,7 +15,7 @@ public class Cart {
     private Long id;
     private float totalPrice;
     private float quantity;
-    private int bookItemId;
+    private Long bookItemId;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_new_id", referencedColumnName = "id")

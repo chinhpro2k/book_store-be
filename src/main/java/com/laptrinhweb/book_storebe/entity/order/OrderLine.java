@@ -13,6 +13,6 @@ public class OrderLine {
     @Column(name = "id")
     private int Id;
     private int OrderId;
-    private int BookItemId;
+    private Long BookItemId;
     private float Quantity;
 }
