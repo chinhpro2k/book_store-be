@@ -25,12 +25,17 @@ public class CustomerController {
     }
 
     @PostMapping("/change/address")
-    public ApiResponse login(@RequestBody AddressDTO addressDTO){
+    public ApiResponse update(@RequestBody AddressDTO addressDTO){
         return customerService.updateAdd(addressDTO);
     }
 
     @GetMapping("/address")
     public AddressResponse getListAddress(@RequestParam String id){
         return customerService.getListAddress(id);
+    }
+
+    @PostMapping("/getById")
+    public CustomerResponse getById(@RequestBody CustomerDto customerDto){
+    return customerService.getCustomer(customerDto);
     }
 }

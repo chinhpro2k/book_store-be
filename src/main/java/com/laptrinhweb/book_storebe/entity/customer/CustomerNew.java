@@ -18,4 +18,12 @@ public class CustomerNew extends Customer {
     public void setNewMemberVoucher(String newMemberVoucher) {
         this.newMemberVoucher = newMemberVoucher;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

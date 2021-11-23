@@ -44,6 +44,7 @@ public class CustomerService {
         if (customerNew != null) {
             if (customerDto.getPassword().equals(customerNew.getPassword()) ) {
                 customerDto1=new CustomerDto();
+                customerDto1.setCustomerId(customerNew.getId());
                 customerDto1.setName(customerNew.getName());
                 customerDto1.setSex(customerNew.getSex());
                 customerDto1.setDate_of_birth(customerNew.getDate_of_birth());
@@ -55,6 +56,7 @@ public class CustomerService {
             if (customerMember != null) {
                 if (customerDto.getPassword().equals(customerMember.getPassword()) ) {
                     customerDto1=new CustomerDto();
+                    customerDto1.setCustomerId(customerMember.getId());
                     customerDto1.setName(customerMember.getName());
                     customerDto1.setSex(customerMember.getSex());
                     customerDto1.setDate_of_birth(customerMember.getDate_of_birth());
@@ -98,5 +100,15 @@ public class CustomerService {
         return new AddressResponse(addressDTOS);
     }
 
-
+    public CustomerResponse getCustomer(CustomerDto customerDto){
+        CustomerNew customerNew=customerNewRepository.findByUserId(customerDto.getCustomerId());
+        if (customerNew!=null){
+            CustomerDto customerDto1=new CustomerDto();
+            customerDto1.setName(customerNew.getName());
+            customerDto1.setDate_of_birth(customerNew.getDate_of_birth());
+            customerDto1.setSex(customerNew.getSex());
+            return new CustomerResponse(customerDto1,200);
+        }
+       return new CustomerResponse(null,400);
+    }
 }
