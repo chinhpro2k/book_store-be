@@ -1,5 +1,6 @@
 package com.laptrinhweb.book_storebe.service.order;
 
+import com.laptrinhweb.book_storebe.dtos.BookDTO;
 import com.laptrinhweb.book_storebe.dtos.CartDetailDto;
 import com.laptrinhweb.book_storebe.dtos.CartDto;
 import com.laptrinhweb.book_storebe.dtos.GetCartDto;
@@ -10,6 +11,7 @@ import com.laptrinhweb.book_storebe.payload.ApiResponse;
 import com.laptrinhweb.book_storebe.repository.book.BookItemRepository;
 import com.laptrinhweb.book_storebe.repository.customer.CustomerNewRepository;
 import com.laptrinhweb.book_storebe.repository.order.CartRepository;
+import com.laptrinhweb.book_storebe.service.book.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class CartService {
     @Autowired
     private CustomerNewRepository customerNewRepository;
     @Autowired
-    private BookItemRepository bookItemRepository;
+    private UtilsService utilsService;
 
     public ApiResponse update(CartDto cartDto){
         List<Cart> cart = cartRepository.findByUserId(cartDto.getUserId());
@@ -71,16 +73,15 @@ public class CartService {
         List<Cart> cart = cartRepository.findByUserId(getCartDto.getCustomerId());
 
         cart.forEach(s->{
-            List<BookItem> bookItem = bookItemRepository.searchById(s.getBookItemId());
+            BookDTO bookItem = utilsService.getDataBookItem(s.getBookItemId()).get(0);
             CartDetailDto itemRes = new CartDetailDto();
-            /*itemRes.setBookItemId(s.getBookItemId());
+            itemRes.setBookItemId(s.getBookItemId());
             itemRes.setQuantity(s.getQuantity());
             itemRes.setPrice(bookItem.getPrice());
-            itemRes.setTitle(bookItem.getBook().getTitle());
-            itemRes.setSummary(bookItem.getBook().getSummary());
-            itemRes.setImg(bookItem.getBook().getImg());
-
-            response.add(itemRes);*/
+            itemRes.setTitle(bookItem.getTitle());
+            itemRes.setImg(bookItem.getImg());
+            itemRes.setId(bookItem.getId());
+            response.add(itemRes);
         });
 
         return response;

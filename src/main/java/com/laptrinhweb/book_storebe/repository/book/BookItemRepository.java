@@ -15,4 +15,6 @@ public interface BookItemRepository extends JpaRepository<BookItem, Long> {
 
     @Query(value = "select c from BookItem c where c.id = 1")
     List<BookItem> searchById(@Param("bookItemId") Long bookItemId);
+
+    List<BookItem> findAll();
 }
