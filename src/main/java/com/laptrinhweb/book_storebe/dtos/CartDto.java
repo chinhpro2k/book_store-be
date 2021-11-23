@@ -3,11 +3,11 @@ package com.laptrinhweb.book_storebe.dtos;
 public class CartDto {
     private float totalPrice;
     private float quantity;
-    private int bookItemId;
+    private Long bookItemId;
     private Long userId;
     private int status;
 
-    public CartDto(float totalPrice, float quantity, int bookItemId, Long userId, int status) {
+    public CartDto(float totalPrice, float quantity, Long bookItemId, Long userId, int status) {
         this.totalPrice = totalPrice;
         this.quantity = quantity;
         this.bookItemId = bookItemId;
@@ -15,11 +15,11 @@ public class CartDto {
         this.status = status;
     }
 
-    public int getBookItemId() {
+    public Long getBookItemId() {
         return bookItemId;
     }
 
-    public void setBookItemId(int bookItemId) {
+    public void setBookItemId(Long bookItemId) {
         this.bookItemId = bookItemId;
     }
 

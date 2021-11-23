@@ -2,7 +2,7 @@ package com.laptrinhweb.book_storebe.dtos;
 
 public class AddressDTO {
     private Long uId;
-
+private Long id;
     private Long number;
     private String city;
     private String district;
@@ -54,5 +54,13 @@ public class AddressDTO {
 
     public void setNumberphone(String numberphone) {
         this.numberphone = numberphone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
