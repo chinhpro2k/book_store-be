@@ -20,11 +20,11 @@ public class ShipmentController {
 
 
     @PostMapping("/create")
-    public ApiResponse createShipment(@RequestBody Shipment sReq) {
+    public Shipment createShipment(@RequestBody Shipment sReq) {
         System.out.println(sReq);
-        Shipment s = new Shipment(sReq.getShipment(),sReq.getAddress(), sReq.getPrice());
+        Shipment s = new Shipment(sReq.getAddress(),sReq.getShipment(), sReq.getPrice());
         shipmentRepository.save(s);
-        return new ApiResponse(0);
+        return s;
     }
 
     @GetMapping()
