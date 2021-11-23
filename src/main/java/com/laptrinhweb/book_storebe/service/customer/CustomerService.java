@@ -109,7 +109,7 @@ public class CustomerService {
             customerDto1.setSex(customerNew.getSex());
             customerDto1.setEmail(customerNew.getEmail());
             customerDto1.setNumberphone(customerNew.getNumberphone());
-            customerDto1.setDate_of_birth(customerNew.getDate_of_birth());\
+            customerDto1.setDate_of_birth(customerNew.getDate_of_birth());
             return new CustomerResponse(customerDto1,200);
         }
        return new CustomerResponse(null,400);
